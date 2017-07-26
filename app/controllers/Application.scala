@@ -124,16 +124,16 @@ class Application extends Controller {
     Ok(request.session.data.toString())
   }
 
-  def setFlash(): Action[AnyContent] = Action{
-    Redirect("/flashing/getData").flashing(
+  def Flash(): Action[AnyContent] = Action{
+    Redirect("/flash/Data").flashing(
       "Data" -> "This was passed via flashing"
     )
   }
 
-  def fetchFlashData(): Action[AnyContent] = Action {
+  def fetchFlash(): Action[AnyContent] = Action {
     implicit request: Request[AnyContent] =>
       request.flash.get("Data").map{
-        value => Ok(value)
+        theme => Ok(theme)
       }.getOrElse(Ok("no data"))
   }
 

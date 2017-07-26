@@ -68,8 +68,8 @@ GET  /session/removeFromSession                   controllers.Application.remove
 GET  /session/showSession                         controllers.Application.showSession()
 GET  /session/showSessionData                     controllers.Application.showSessionData()
 
-GET  /flashing                                    controllers.Application.setFlash()
-GET  /flashing/getData                            controllers.Application.fetchFlashData()
+GET  /flash                                       controllers.Application.Flash()
+GET  /flash/Data                                  controllers.Application.fetchFlash()
 
 
 
