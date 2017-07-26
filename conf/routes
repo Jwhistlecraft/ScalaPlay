@@ -3,13 +3,84 @@
 # ~~~~
 
 # Home page
-GET     /                       controllers.Application.index
+
+GET   /                                           controllers.Application.homePage()
 
 # Map static resources from the /public folder to the /assets URL path
-GET     /assets/*file           controllers.Assets.at(path="/public", file)
+
+GET   /assets/*file                               controllers.Assets.at(path="/public", file)
 
 
 # Have a URI that would after getting called by
 # the browser would redirect you to some page of your choice
 
-GET /redirect                  controllers.Application.redirect
+GET   /redirect                                   controllers.Application.redirect()
+
+# Use all the available common result helpers like Ok
+
+GET   /homePage                                   controllers.Application.homePage()
+GET   /toImplement                                controllers.Application.toDo()
+GET   /pageNotFound                               controllers.Application.pageNotFound()
+GET   /badRequest                                 controllers.Application.badRequest()
+GET   /internalServerError                        controllers.Application.internalServerError()
+GET   /anyStatus                                  controllers.Application.anyStatus()
+
+# Have a URIs for dynamic, static, default, set, optional values with corresponding methods
+# and pages that would have them displayed in a nice way
+
+GET   /default                                    controllers.Application.default(id :String ?= "id not found")
+GET   /static/all                                 controllers.Application.displayList()
+GET   /dynamic/$id<[0-9]+>                        controllers.Application.dynamic(id :Int)
+GET   /set                                        controllers.Application.set(input:String = "input set")
+GET   /optional                                   controllers.Application.optional(id: Option[String])
+
+# Have at least one use case of reverse routing
+
+GET   /reverseRouting                             controllers.Application.reverseRoutingHome()
+
+# One use of the TODO Action
+
+GET   /useOfTODO                                  controllers.Application.useOfTODO()
+
+# Have two routes that are the same but point to different Actions, which one will be called?
+# Answer: The first route which is called
+
+GET   /reverseRouting                             controllers.Application.toDo()
+
+# Test out default controller and see what results does it show for the supported methods
+
+GET  /about                                       controllers.Default.redirect(to = "http://www.google.com/")
+GET  /orders                                      controllers.Default.notFound()
+GET  /Clients                                     controllers.Default.error()
+GET  /posts                                       controllers.Default.todo()
+
+# Try to use cookies/session/flash scope for your Actions and figure out how to print
+# them out onto the page
+
+GET  /pageWithCookies                             controllers.Application.cookiePage()
+GET  /pageWithCookies/deleteCookies               controllers.Application.deleteCookies()
+GET  /pageWithCookies/showCookies                 controllers.Application.showCookies()
+GET  /pageWithCookies/editCookies                 controllers.Application.editCookies()
+
+GET  /session                                     controllers.Application.session()
+GET  /session/addToSession                        controllers.Application.addToSession()
+GET  /session/removeFromSession                   controllers.Application.removeFromSession()
+GET  /session/showSession                         controllers.Application.showSession()
+GET  /session/showSessionData                     controllers.Application.showSessionData()
+
+GET  /flashing                                    controllers.Application.setFlash()
+GET  /flashing/getData                            controllers.Application.fetchFlashData()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
